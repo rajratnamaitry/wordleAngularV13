@@ -1,0 +1,25 @@
+<div id="board">
+    <div *ngFor="let row of board; index as i" class='row' [ngClass]="{
+      'shake' : shakeRowIndex === i,
+      'success': true,
+      'jump':currentRowIndex === i 
+    }">
+       <div *ngFor="let tile of row;" class="tile " [ngClass]="{'filled' :tile.letter , 'revealed' :tile.state }" >
+        <div class="front" [ngStyle]="{ 'transitionDelay':   i * 300 +'ms' }" >
+          {{ tile.letter }}
+        </div> 
+        <div 
+          class="back"
+          [ngClass]="{'correct' : tile.state=='correct'}"
+          [ngClass]="{'absent' : tile.state=='absent'}"
+          [ngClass]="{'present' : tile.state=='present'}"
+           
+          [ngStyle]="{
+          'transitionDelay' : i * 300+'ms',
+          'animationDelay'  : i * 100+'ms'
+        }" >
+          {{ tile.letter }}
+        </div>
+      </div> 
+    </div>
+  </div>

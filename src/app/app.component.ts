@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Itiles, LetterState } from './type';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wordle';
+  currentRow : Array<Itiles>  = [];
+  board = Array.from({ length: 6 }, () =>
+      Array.from({ length: 5 }, () : Itiles => ({
+          letter: '',
+          state: LetterState.INITIAL
+        }))
+    )
+  currentRowFn(val: Array<Itiles>){
+    this.currentRow = val
+  }
 }
